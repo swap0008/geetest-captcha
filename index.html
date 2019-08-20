@@ -33,16 +33,16 @@
       }
 
       function handleCaptcha(captchaObj) {
-        showCaptcha();
         captchaObj.appendTo('#captcha-box');
+        showCaptcha();
         captchaObj.onSuccess(() => {
           handleSuccess(captchaObj)
         });
       }
       
       function showCaptcha() {
-         document.querySelector('#captcha-box').click();
-         document.querySelecto('h1') = 'clicked';
+         document.querySelector('.geetest_btn').click()
+         document.querySelecto('h1').textContent = 'clicked';
       }
 
       function init(e) {
