@@ -33,10 +33,15 @@
       }
 
       function handleCaptcha(captchaObj) {
+        showCaptcha();
         captchaObj.appendTo('#captcha-box');
         captchaObj.onSuccess(() => {
           handleSuccess(captchaObj)
         });
+      }
+      
+      function showCaptcha() {
+        document.querySelector('.geetest_btn').click();
       }
 
       function init(e) {
