@@ -34,11 +34,12 @@
 
       function handleCaptcha(captchaObj) {
         captchaObj.appendTo('#captcha-box');
+        document.querySelector('.geetest_btn').click();
         captchaObj.onSuccess(() => {
           handleSuccess(captchaObj)
         });
       }
-      
+     
 
       function init(e) {
         const data = JSON.parse(e.data);
