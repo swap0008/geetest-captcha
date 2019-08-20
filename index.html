@@ -13,7 +13,7 @@
     <div id="captcha-box"></div>
     <script>
       const c = document.querySelector('span');
-      let count = 0;
+      let count = 10;
       
       function handleSuccess(captchaObj) {
 //         const result = captchaObj.getValidate();
@@ -23,9 +23,14 @@
 
       function handleCaptcha(captchaObj) {
         captchaObj.appendTo('#captcha-box');
+        showCaptcha();
         captchaObj.onSuccess(() => {
           handleSuccess(captchaObj)
         });
+      }
+      
+      function showCaptcha() {
+        document.querySelector('.geetest_btn').click();
       }
       
       setInterval(() => c.textContent = count++, 1000);
