@@ -9,13 +9,16 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 </head>
 <body>
+  Count: <span></span>
     <div id="captcha-box"></div>
     <script>
+      const c = document.querySelector('span');
+      let count = 0;
+      
       function handleSuccess(captchaObj) {
-        const result = captchaObj.getValidate();
-        ReactNativeWebView.postMessage(JSON.stringify(result));
-        window.postMessage(JSON.stringify(result));
-        document.querySelector('div').textContent = "success";
+//         const result = captchaObj.getValidate();
+//         ReactNativeWebView.postMessage(JSON.stringify(result));
+        
       }
 
       function handleCaptcha(captchaObj) {
@@ -24,6 +27,8 @@
           handleSuccess(captchaObj)
         });
       }
+      
+      setInterval(() => c.textContent = count++, 1000);
 
       function init(e) {
         const data = JSON.parse(e.data);
