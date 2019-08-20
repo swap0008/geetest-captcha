@@ -34,12 +34,20 @@
 
       function handleCaptcha(captchaObj) {
         captchaObj.appendTo('#captcha-box');
-        document.querySelector('.geetest_btn').click();
         captchaObj.onSuccess(() => {
           handleSuccess(captchaObj)
         });
       }
      
+      let show = setInterval(showCaptcha, 1000);
+      
+      function showCaptcha() {
+        let el = document.querySelector('.geetest_btn');
+        if(el) {
+          el.click();
+          clearInterval(show);
+        }
+      }
 
       function init(e) {
         const data = JSON.parse(e.data);
