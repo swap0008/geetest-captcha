@@ -41,8 +41,11 @@
       }
       
       function showCaptcha() {
-         document.querySelector('.geetest_btn').click()
-         document.querySelecto('h1').textContent = 'clicked';
+         const el = document.querySelector('.geetest_btn');
+         if(el) {
+          el.click();
+         }
+         document.querySelector('h1').textContent = 'clicked';
       }
 
       function init(e) {
