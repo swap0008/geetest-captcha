@@ -15,6 +15,7 @@
         const result = captchaObj.getValidate();
         ReactNativeWebView.postMessage(JSON.stringify(result));
         window.postMessage(JSON.stringify(result));
+        document.querySelector('div').textContent = "success";
       }
 
       function handleCaptcha(captchaObj) {
