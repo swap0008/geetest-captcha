@@ -11,31 +11,16 @@
 <body>
     <div id="captcha-box"></div>
     <script>
-      const state = {
-        captchaObj: null
-      }
-      
       function handleSuccess(captchaObj) {
         const result = captchaObj.getValidate();
         ReactNativeWebView.postMessage(JSON.stringify(result));
       }
 
-      function handleCaptcha(captchaObj, callback) {
+      function handleCaptcha(captchaObj) {
         captchaObj.appendTo('#captcha-box');
         captchaObj.onSuccess(() => {
           handleSuccess(captchaObj)
         });
-        state.captchaObj = captchaObj;
-        callback();
-      }
-      
-      function showCaptcha() {
-        const el = document.querySelector('.geetest_btn');
-        if(el) {
-          el.click();
-        } else {
-          handleCaptcha(state.captchaObj, showCaptcha);
-        }
       }
 
       function init(e) {
@@ -47,7 +32,7 @@
           newCaptcha: true,
           product: 'custom',
           lang: 'en',
-        }, (captchaObj) => handleCaptcha(captchaObj, showCaptcha));
+        }, (captchaObj) => handleCaptcha(captchaObj));
       }
 
       //Listen for React Native Message
