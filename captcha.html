@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src='https://static.geetest.com/static/tools/gt.js'></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+</head>
+<body>
+  <style>
+    h1 {
+      color: darkolivegreen;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    body {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      margin-top: 100px;
+    }
+  </style>
+
+    <h1>Verify Captcha</h1>
+    <div id="captcha-box"></div>
+    <script>
+      function handleSuccess(captchaObj) {
+        const result = captchaObj.getValidate();
+        ReactNativeWebView.postMessage(JSON.stringify(result));
+      }
+
+      function handleCaptcha(captchaObj) {
+        captchaObj.appendTo('#captcha-box');
+        captchaObj.onSuccess(() => {
+          handleSuccess(captchaObj)
+        });
+      }
+
+      function init(e) {
+        const data = JSON.parse(e.data);
+        initGeetest({
+          gt: data.gt,
+          challenge: data.challenge,
+          offline: false,
+          newCaptcha: true,
+          product: 'custom',
+          lang: 'en',
+        }, (captchaObj) => handleCaptcha(captchaObj));
+      }
+
+      //Listen for React Native Message
+      window.addEventListener('message', init);
+      document.addEventListener('message', init);
+    </script>
+</body>
+</html>
