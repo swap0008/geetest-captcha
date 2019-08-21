@@ -25,8 +25,13 @@
       }
       
       function showCaptcha() {
-        document.querySelector('.geetest_btn').click();
+        let el = document.querySelector('.geetest_btn');
+        if (el) {
+          el.click();
+        } 
       }
+      
+      setInterval(showcaptcha, 2000);
       
 
       function init(e) {
