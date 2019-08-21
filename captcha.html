@@ -35,16 +35,22 @@
       
       setInterval(() => c.textContent = count++, 1000);
 
-      function init(e) {
+      async function init(e) {
         const data = JSON.parse(e.data);
-        initGeetest({
+        return await initGeetest({
           gt: data.gt,
           challenge: data.challenge,
           offline: false,
           newCaptcha: true,
           product: 'custom',
           lang: 'en',
-        }, (captchaObj) => handleCaptcha(captchaObj));
+        });
+      }
+      
+      funcion initialise(e){
+        init(e).then(function(res){
+          handleCaptcha(res)
+        });
       }
 
       //Listen for React Native Message
