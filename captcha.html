@@ -13,8 +13,14 @@
     <script> 
       function handleSuccess(captchaObj) {
         const result = captchaObj.getValidate();
-        //ReactNativeWebView.postMessage(JSON.stringify(result));
-        console.log(result);
+        
+        if (document.hasOwnProperty('postMessage')) {
+          document.postMessage(result, '*');
+        } else if (window.hasOwnProperty('postMessage')) {
+          window.postMessage(result, '*');
+        } else {
+          console.log('unable to find postMessage');
+        }
       }
 
       function handleCaptcha(captchaObj) {
