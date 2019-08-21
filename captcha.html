@@ -28,7 +28,9 @@
         let el = document.querySelector('.geetest_btn');
         if (el) {
           el.click();
-        } 
+        } else {
+          console.log('ele n found');
+        }
       }
       
       setInterval(showCaptcha, 2000);
