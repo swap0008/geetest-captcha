@@ -12,7 +12,8 @@
     <div id="captcha-box" style="display:none"></div>
     <script> 
       function handleSuccess(captchaObj) {
-        const result = captchaObj.getValidate();
+        let result = captchaObj.getValidate();
+        result = JSON.stringify(result);
         
         if (document.hasOwnProperty('postMessage')) {
           document.postMessage(result, '*');
