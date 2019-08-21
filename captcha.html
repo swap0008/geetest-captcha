@@ -11,14 +11,10 @@
 <body>
   Count: <span></span>
     <div id="captcha-box"></div>
-    <script>
-      const c = document.querySelector('span');
-      let count = 10;
-      
+    <script> 
       function handleSuccess(captchaObj) {
-//         const result = captchaObj.getValidate();
-//         ReactNativeWebView.postMessage(JSON.stringify(result));
-        
+        const result = captchaObj.getValidate();
+        ReactNativeWebView.postMessage(JSON.stringify(result)); 
       }
 
       function handleCaptcha(captchaObj) {
@@ -33,25 +29,19 @@
         document.querySelector('.geetest_btn').click();
       }
       
-      setInterval(() => c.textContent = count++, 1000);
 
-      async function init(e) {
+      function init(e) {
         const data = JSON.parse(e.data);
-        return await initGeetest({
+        initGeetest({
           gt: data.gt,
           challenge: data.challenge,
           offline: false,
           newCaptcha: true,
           product: 'custom',
           lang: 'en',
-        });
+        }, (obj) => handleCapcha(obj));
       }
       
-      function initialise(e){
-        init(e).then(function(res){
-          handleCaptcha(res)
-        });
-      }
 
       //Listen for React Native Message
       window.addEventListener('message', init);
