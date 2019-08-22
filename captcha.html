@@ -12,10 +12,14 @@
   <style>
         body {
           background-color: grey;
+        }
+        
+        .loading {
           display: flex;
-          justify-content: center,
+          justify-content: center;
           align-items: center
         }
+    
         .lds-ripple {
         display: inline-block;
         position: relative;
@@ -51,9 +55,11 @@
   </style>
 
     <div id="captcha-box" style="display:none"></div>
-    <div class="lds-ripple">
-      <div></div>
-      <div></div>
+    <div class="loading">
+      <div class="lds-ripple">
+        <div></div>
+        <div></div>
+      </div>
     </div>
     <script> 
       function handleSuccess(captchaObj) {
