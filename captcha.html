@@ -67,10 +67,10 @@
         let result = captchaObj.getValidate();
         result = JSON.stringify(result);
         
-        if (document.hasOwnProperty('postMessage')) {
-          document.postMessage(result, '*');
-        } else if (window.hasOwnProperty('postMessage')) {
-          window.postMessage(result, '*');
+        if (document.hasOwnProperty('ReactNativeWebView')) {
+          document.ReactNativeWebView.postMessage(result);
+        } else if (window.hasOwnProperty('ReactNativeWebView')) {
+          window.ReactNativeWebView.postMessage(result);
         } else {
           console.log('unable to find postMessage');
         }
